@@ -56,7 +56,7 @@ export default {
    }
 
   .guide_content{
-    background: url(../assets/back.jpg) no-repeat;
+    background: url(../assets/back.jpg);
     width: 100vw;
     height: 100vh;
     background-size: cover;
