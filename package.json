@@ -1,8 +1,8 @@
 {
-  "name": "vimo-start-kit",
+  "name": "dingleiblog",
   "version": "1.0.0",
-  "description": "a Vimo start kit for Vue2.x",
-  "author": "向松涛 <280304286@163.com>",
+  "description": "a blog for Vue2.x",
+  "author": "丁磊 <dinglei5959@163.com>",
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
@@ -11,7 +11,6 @@
   },
   "dependencies": {
     "fastclick": "^1.0.6",
-    "vimo": "^0.3.6",
     "vue": "^2.2.2",
     "vue-router": "^2.2.0"
   },
