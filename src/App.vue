@@ -42,5 +42,10 @@ export default {
             height: 100%;
             width: 100%;
         }
+        @media screen and (max-width: 600px){
+            .blog_nav{
+                display: none;
+            }
+        }
     }
 </style>
