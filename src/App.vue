@@ -41,8 +41,9 @@ export default {
         .content{
             height: 100%;
             width: 100%;
+            overflow: hidden;
         }
-        @media screen and (max-width: 600px){
+        @media screen and (max-width: $mobileWidth){
             .blog_nav{
                 display: none;
             }
