@@ -96,7 +96,7 @@ export default {
   }
   
   .guide_content {
-    background: url(../assets/back.jpg);
+    background:rgba(0, 0, 0, .1);
     width: 100vw;
     height: 100vh;
     background-size: cover;
