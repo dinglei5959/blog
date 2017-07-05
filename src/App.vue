@@ -20,6 +20,9 @@ export default {
 
 <style lang="scss">
     @import './scss/index.scss';
+    html{
+        
+    }
     body{
         overflow: hidden;
     }
