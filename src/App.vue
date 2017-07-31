@@ -8,7 +8,7 @@
                 <router-view></router-view>
             </keep-alive>
         </div>
-    
+        
     </div>
 </template>
 
@@ -20,6 +20,8 @@ export default {
 
 <style lang="scss">
     @import './scss/index.scss';
+    @import './scss/font.css';
+   
     html{
         
     }
@@ -35,12 +37,10 @@ export default {
         width: 100vw;
         height: 100vh;
         overflow: hidden;
-        .blog_nav{
-            position: fixed;
-            width: $navWidth;
-            height: 100vh;
-            background: rgba(0,0,0,.6);
-        }
+        display: fixed;
+        top:0;
+        left: 0;
+        background: rgba(0,0,0,.2);
         .content{
             height: 100%;
             width: 100%;

@@ -1,6 +1,7 @@
 @import './normalize';
 @import './components';
-@import './variable.scss';
+@import './animation';
+@import './variable';
 
 .background:before {
     content: "";

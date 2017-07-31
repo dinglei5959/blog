@@ -12,6 +12,22 @@ export default new Router({
       path: '/',
       name: 'Hello',
       component: Hello
+    },
+    {
+      path: '/index',
+      name: 'index',
+      component (resolve) {
+        require(['@/page/index.vue'], resolve)
+      },
+      children: [
+        {
+          path: '/',
+          name: 'article',
+          component (resolve) {
+            require(['@/page/index/article-list.vue'], resolve)
+          }
+        }
+      ]
     }
   ]
 })

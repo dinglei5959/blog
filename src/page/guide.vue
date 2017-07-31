@@ -1,9 +1,9 @@
 <template>
   <article class="guide_content">
     <div class="guide_content_nav">
-      <div class="guide_content_nav_title">
+      <!--<div class="guide_content_nav_title">
         <section class="guide_content_title_content">不忘初心，方得始终！！</section>
-      </div>
+      </div>-->
     </div>
     <div class="guide_content_details">
       <div class="guide_content_details_item">
@@ -17,19 +17,22 @@
         哦丽(*@ο@*)哇～ 丁磊（dinglei） φ(>ω
         <*) </h1>
     </div>
+    <div @click="toIndex" class="guide_content_footer">
+        <div class="btn">我的博客</div>
+    </div>
   </article>
 </template>
 
 <script>
 let scope
 export default {
+  name: 'guide',
   data () {
     return {
       show: 0,
       dataList: [
         '前端攻城狮',
-        '506第一影魔',
-        '超神一样的男人'
+        '506第一影魔'
       ]
     }
   },
@@ -43,6 +46,11 @@ export default {
       } else {
         scope.show = 0
       }
+    },
+    toIndex () {
+      this.$router.push({
+        name: 'index'
+      })
     }
   },
   created () {
@@ -84,7 +92,7 @@ export default {
       transform: translateX(-50%);
     }
   }
-  
+
   .fade-enter-active,
   .fade-leave-active {
     transition: opacity .5s
@@ -101,6 +109,7 @@ export default {
     height: 100vh;
     background-size: cover;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     overflow: hidden;
@@ -138,6 +147,19 @@ export default {
         height: 2em;
       }
     }
+    .guide_content_footer{
+      position: fixed;
+      bottom: 20px;
+    }
+
+    .btn{
+      width: 130px;
+      line-height: 2em;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      color: white;
+    }
+
     @media screen and (max-width: $mobileWidth) {
       .guide_content_details {
         font-size: 1rem;
