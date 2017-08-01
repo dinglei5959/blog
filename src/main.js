@@ -4,12 +4,15 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import attachFastClick from 'fastclick'
+import axios from 'axios'
 // import vmStorage from 'vm-storage'
 
 new attachFastClick(document.body)
 // 平台基础安装
 
 Vue.config.productionTip = false
+
+Vue.prototype.$axios = axios
 
 /* eslint-disable no-new */
 new Vue({

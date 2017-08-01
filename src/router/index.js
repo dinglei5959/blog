@@ -26,6 +26,13 @@ export default new Router({
           component (resolve) {
             require(['@/page/index/article-list.vue'], resolve)
           }
+        },
+        {
+          path: '/details',
+          name: 'articleDetails',
+          component (resolve) {
+            require(['@/page/index/article-details.vue'], resolve)
+          }
         }
       ]
     }

@@ -1,9 +1,5 @@
 <template>
   <article class="article">
-  
-    <section @click="showLeft=!showLeft" class="article_nav">
-  
-    </section>
     <section v-for="(item,index) in list" :key="index" class="article_item btn_meet">
       <div class="article_item_title">
         <span>怎么设计呢？</span>
@@ -16,36 +12,17 @@
           <span>
             <i class="iconfont icon-date"></i> 两个月前</span>
           <span>
-            <i class="iconfont icon-read"></i> 阅读数 125</span>
+            <i class="iconfont icon-icon"></i> 阅读数 125</span>
           <span>
-            <i class="iconfont icon-eval"></i> 评论数 24</span>
+            <i class="iconfont icon-eval-tab"></i> 评论数 24</span>
         </div>
         <div>
-          <div class="btn animate draw">
+          <div @click="toDetails" class="btn animate draw">
             阅读更多
           </div>
         </div>
       </div>
     </section>
-  
-    <transition name="translateX">
-      <section v-show="showLeft" class="article_left">
-        <div>
-          <img src="../../assets/lei.jpg" class="" class="potrait" alt="">
-        </div>
-        <div>
-          <div class="title">丁磊</div>
-          <div>前端攻城狮&&dotaer</div>
-          <div>浙江~杭州</div>
-          <div>Follow me</div>
-          <div>
-            <i @click="showImg(0)" class="iconfont icon-qq icon"></i>
-            <i @click="showImg(1)" class="iconfont icon-weixin icon"></i>
-            <i @click="showImg(2)" class="iconfont icon-zhifubao icon"></i>
-          </div>
-        </div>
-      </section>
-    </transition>
   
     <transition name="fade">
       <article class="modal" v-show="show" @click="show=false">
@@ -56,6 +33,7 @@
 </template>
 
 <script>
+  import { Bounce } from '../../components/bounce'
   export default {
     name: 'article',
     data () {
@@ -78,14 +56,21 @@
       showImg (index) {
         this.index = index
         this.show = true
+      },
+      toDetails () {
+        this.$router.push({name: 'articleDetails'})
       }
     },
-    created () { },
+    created () {
+      this.$axios.get('http://localhost:8081/').then(() => {
+        debugger
+      })
+    },
     mounted () { },
     activated () { },
     deactivate () { },
     destroyed () { },
-    components: {}
+    components: { Bounce }
   }
 </script>
 <style lang="scss" scoped>
@@ -99,65 +84,6 @@
     margin: 50px auto;
     text-align: start;
   
-    .article_nav {
-      position: fixed;
-      left: 0;
-      top: 100px;
-      height: 100px;
-      width: 100px;
-      background: white;
-      z-index: 101;
-    }
-  
-    .article_left {
-      z-index: 100;
-      // transform: translateX(-100%);
-      overflow: hidden;
-      position: fixed;
-      height: 100vh;
-      background: rgba(0, 0, 0, .7);
-      left: 0;
-      top: 0;
-      display: flex;
-      justify-content: space-around;
-      align-items: center;
-      &>div {
-        &:first-child {
-          width: 40%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-        &:last-child {
-          width: 60%;
-          &>div {
-            padding: 10px;
-          }
-          .title {
-            font-size: xx-large;
-          }
-        }
-      }
-    }
-  
-  
-    .modal {
-      // display: none;
-      z-index: 100;
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 100vh;
-      width: 100vw;
-      background: rgba(0, 0, 0, .4);
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      cursor: pointer;
-      &>img {
-        margin: 10px auto;
-      }
-    }
   
     .article_item {
       background: rgba(0, 0, 0, .3);
@@ -240,14 +166,24 @@
 </style>
 
 <style lang="scss" scoped>
-    .translateX-enter-active,
-    .translateX-leave-active {
-      transition: tranform .5s;
-      // transform:translateX(-100%);
-    }
-    .translateX-enter,
-    .translateX-leave-to/* .fade-leave-active in below version 2.1.8 */
-    {
-      transform:translateX(0%);
-    }
+ 
+  
+
+  
+  
+  
+  
+  .translateX-enter-active,
+  .translateX-leave-active {
+    transition: tranform .5s;
+    transform: translateX(-100%);
+  }
+  
+  .translateX-enter,
+  .translateX-leave-to
+  /* .fade-leave-active in below version 2.1.8 */
+  
+  {
+    transform: translateX(0%);
+  }
 </style>

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-  import {addClass, removeClass} from '../../platform/utils/dom.js'
+  import {addClass, removeClass} from '../../lib/utils.js'
   export default{
     name: 'Bounce',
     props: {
@@ -36,24 +36,31 @@
     methods: {
       beforeEnter (el) {
         // el.className = 'collapse-transition'
+  
         addClass(el, 'collapse-transition')
-        el.style.height = '0px'
+        el.style.width = '0px'
       },
       enter (el, done) {
-        el.style.height = el.scrollHeight + 'px'
+       // el.style.width = el.scrollWidth + 'px'
+        el.style.width = '100vh'
+        el.addEventListener('webkitTransitionEnd', function () {
+          done()
+        })
       },
       afterEnter (el) {
         // el.className = ''
         removeClass(el, 'collapse-transition')
-        el.style.height = 'auto'
+       // el.style.width = 'auto'
       },
       beforeLeave (el) {
        // el.className = 'collapse-transition'
         addClass(el, 'collapse-transition')
-        el.style.height = el.scrollHeight + 'px'
+        // el.style.width = el.scrollwidth + 'px'
+        // el.style.width = '1000px'
       },
       leave (el, done) {
-        el.style.height = '0px'
+        el.style.width = '0px'
+        window.lei = el
         el.addEventListener('webkitTransitionEnd', function () {
           done()
         })
@@ -61,7 +68,7 @@
       afterLeave (el) {
         // el.className = ''
         removeClass(el, 'collapse-transition')
-        el.style.height = 'auto'
+        el.style.width = 'auto'
         el.style.border = '0px'
        // el.style.display = 'none'
       }
