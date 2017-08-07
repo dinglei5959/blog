@@ -28,13 +28,34 @@ export default new Router({
           }
         },
         {
-          path: '/details',
+          path: '/details/:id',
           name: 'articleDetails',
           component (resolve) {
             require(['@/page/index/article-details.vue'], resolve)
           }
         }
       ]
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component (resolve) {
+        require(['@/page/manager/manage_login.vue'], resolve)
+      }
+    },
+    {
+      path: '/manage/articleList',
+      name: 'manageArticleList',
+      component (resolve) {
+        require(['@/page/manager/manage_article-list.vue'], resolve)
+      }
+    },
+    {
+      path: '/manage/articleAdd',
+      name: 'manageArticleAdd',
+      component (resolve) {
+        require(['@/page/manager/manage_article-add.vue'], resolve)
+      }
     }
   ]
 })

@@ -15,15 +15,42 @@
             </article>
         </transition>
     
-        <section @click="showLeft=!showLeft" class="article_nav">
-            <i class="iconfont icon-details-peo" style="font-size:larger;"></i>
+        <section class="article_nav">
+            
+            <div @click="showLeft=!showLeft">
+                <i class="iconfont icon-details-peo" style="font-size:larger;"></i>
+            </div>
+            <div @click="toManage">
+                <i class="iconfont icon-tubiaozhizuomoban" style="font-size:larger;"></i>
+            </div>
+            <div @click="toHome">
+                <i class="iconfont icon-homepage" style="font-size:larger;"></i>
+            </div>
+            <div >
+                <i class="iconfont icon-xiangce" style="font-size:larger;"></i>
+            </div>
+            <div >
+                <i class="iconfont icon-yinle" style="font-size:larger;"></i>
+            </div>
         </section>
+       
     
         <transition name="bounce">
             <section v-show="showLeft" class="article_left">
                 <div>
                     <img src="./assets/lei.jpg" class="" class="potrait" alt="">
                 </div>
+
+                 <div class="footer">
+                    <i></i>
+                    <span>
+                        2017-2018 All Rights Reserved.
+                    </span>
+                    <span>
+                        Designed by dinglei.皖ICP备52506号.
+                    </span>
+                </div>
+
                 <div>
                     <div class="title">丁磊</div>
                     <div>前端攻城狮&&dotaer</div>
@@ -35,8 +62,11 @@
                         <i @click="showImg(2)" class="iconfont icon-zhifubao icon"></i>
                     </div>
                 </div>
+               
             </section>
         </transition>
+
+       
     
     </div>
 </template>
@@ -50,19 +80,25 @@
           show: false,
           index: 0,
           img: [
-              require('./assets/qq.jpg'),
-              require('./assets/weixin.jpg'),
-              require('./assets/zhi.jpg')
-            ]
+            require('./assets/qq.jpg'),
+            require('./assets/weixin.jpg'),
+            require('./assets/zhi.jpg')
+          ]
         }
       },
       methods: {
+        toHome () {
+          this.$router.push({name: 'index'})
+        },
         showImg (index) {
           this.index = index
           this.show = true
         },
         toGitHub () {
           window.location.href = 'https://github.com/dinglei5959'
+        },
+        toManage () {
+          this.$router.push({name: 'login'})
         }
       }
     }
@@ -98,7 +134,7 @@
         .content {
             height: 100%;
             width: 100%;
-            overflow: hidden;
+            overflow: auto;
         }
         @media screen and (max-width: $mobileWidth) {
             .blog_nav {
@@ -117,9 +153,12 @@
         font-size: xx-large;
         cursor: pointer;
         z-index: 101;
-        transition: transform .3s ease-in;
-        &:hover {
+        &>div{
+          transition: transform .3s ease-in;
+          &:hover {
             transform: rotate(360deg) scale(1.5);
+            color:#000;
+          }
         }
     }
     
@@ -135,6 +174,12 @@
         justify-content: space-around;
         align-items: center;
         width: 30%;
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            color: #fff;
+            font-size: smaller;
+        }
         &>div {
     
             &:first-child {

@@ -1,5 +1,31 @@
 <template>
   <article class="article">
+
+
+    <section v-for="(item,index) in list2" :key="index" class="article_item btn_meet">
+      <div class="article_item_title">
+        <span>{{item.title}}</span>
+      </div>
+      <div class="article_item_body">
+        {{item.content}}
+      </div>
+      <div class="article_item_footer  text-white">
+        <div class="middle">
+          <span>
+            <i class="iconfont icon-date"></i> 两个月前</span>
+          <span>
+            <i class="iconfont icon-icon"></i> 阅读数 {{item.readed}}</span>
+          <span>
+            <i class="iconfont icon-eval-tab"></i> 评论数 {{item.comment}}</span>
+        </div>
+        <div>
+          <div @click="toDetails(item.id)" class="btn animate draw">
+            阅读更多
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section v-for="(item,index) in list" :key="index" class="article_item btn_meet">
       <div class="article_item_title">
         <span>怎么设计呢？</span>
@@ -23,6 +49,9 @@
         </div>
       </div>
     </section>
+
+
+    
   
     <transition name="fade">
       <article class="modal" v-show="show" @click="show=false">
@@ -44,7 +73,8 @@
           require('../../assets/zhi.jpg')
         ],
         index: 0,
-        list: [1, 4, 5],
+        list: [1, 4, 5, 6, 9, 6, 7, 8, 4, 6, 9],
+        list2: null,
         show: false,
         showLeft: false
       }
@@ -57,13 +87,17 @@
         this.index = index
         this.show = true
       },
-      toDetails () {
-        this.$router.push({name: 'articleDetails'})
+      toDetails (id) {
+        this.$router.push({name: 'articleDetails',
+          params: {
+            id: id
+          }
+        })
       }
     },
     created () {
-      this.$axios.get('http://localhost:8081/').then(() => {
-        debugger
+      this.$axios.get('http://localhost:8081/').then((res) => {
+        this.list2 = res.data
       })
     },
     mounted () { },
@@ -90,7 +124,7 @@
       cursor: pointer;
       position: relative;
       padding-bottom: 20px;
-      &:hover {}
+      margin-bottom: 20px;
       &:after {
         content: '';
         width: 80%;
@@ -144,12 +178,12 @@
   .btn_meet {
     &:hover {
       color: aqua;
-      &::before {
-        border-right-color: aqua;
-        border-left-color: aqua;
-        display: inline-block;
-        transform: scale3d(1, 1, 1);
-      }
+      // &::before {
+      //   border-right-color: aqua;
+      //   border-left-color: aqua;
+      //   display: inline-block;
+      //   transform: scale3d(1, 1, 1);
+      // }
     }
     &::before {
       box-sizing: border-box;
